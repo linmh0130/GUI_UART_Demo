@@ -130,8 +130,7 @@ class GUI:
                     ch = self.ser.read().decode(encoding='ascii')
                     print(ch,end='')
                     self.OutputText.insert(tk.END,ch)
-                except UnicodeDecodeError:
-                    print("Something wrong in communication.")
+                except:
+                    print("Something wrong in receiving.")
 
 GUI()
-
