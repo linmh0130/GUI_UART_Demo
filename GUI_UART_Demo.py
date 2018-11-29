@@ -108,7 +108,11 @@ class GUI:
             elif (strStopbits == "2"):
                 self.ser.stopbits = serial.STOPBITS_TWO;
             
-            self.ser.open()
+            try:
+                self.ser.open()
+            except:
+                print("Can't open "+self.ser.port)
+            
             if (self.ser.isOpen()): # open success
                 self.buttonSS["text"] = "Stop"
                 self.uartState = True
