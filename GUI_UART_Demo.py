@@ -8,10 +8,12 @@ import threading
 class InformWindow:
     def __init__(self,informStr):
         self.window = tk.Tk()
+        self.window.title("Information")
+        self.window.geometry("220x60")
         label = tk.Label(self.window, text=informStr)
         buttonOK = tk.Button(self.window,text="OK",command=self.processButtonOK)
-        label.pack()
-        buttonOK.pack()
+        label.pack(side = tk.TOP)
+        buttonOK.pack(side = tk.BOTTOM)
         self.window.mainloop()
 
     def processButtonOK(self):
