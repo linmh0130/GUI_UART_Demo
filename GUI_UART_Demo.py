@@ -4,7 +4,20 @@ from tkinter import ttk
 import serial
 import threading
 
-class GUI:
+# A simple Information Window
+class InformWindow:
+    def __init__(self,informStr):
+        self.window = tk.Tk()
+        label = tk.Label(self.window, text=informStr)
+        buttonOK = tk.Button(self.window,text="OK",command=self.processButtonOK)
+        label.pack()
+        buttonOK.pack()
+        self.window.mainloop()
+
+    def processButtonOK(self):
+        self.window.destroy()
+
+class mainGUI:
     def __init__(self):
         window = tk.Tk()
         window.title("GUI UART Tx/Rx Demo")
@@ -111,7 +124,8 @@ class GUI:
             try:
                 self.ser.open()
             except:
-                print("Can't open "+self.ser.port)
+                infromStr = "Can't open "+self.ser.port
+                InformWindow(infromStr)
             
             if (self.ser.isOpen()): # open success
                 self.buttonSS["text"] = "Stop"
@@ -124,7 +138,8 @@ class GUI:
             self.ser.write(bytesToSend)
             print(bytesToSend)
         else:
-            print("Not In Connect!")
+            infromStr = "Not In Connect!"
+            InformWindow(infromStr)
 
     def ReadUART(self):
         # print("Threading...")
@@ -135,6 +150,11 @@ class GUI:
                     print(ch,end='')
                     self.OutputText.insert(tk.END,ch)
                 except:
-                    print("Something wrong in receiving.")
+                    infromStr = "Something wrong in receiving."
+                    InformWindow(infromStr)
+                    self.ser.close() # close the serial when catch exception
+                    self.buttonSS["text"] = "Start"
+                    self.uartState = False
+                    
 
-GUI()
+mainGUI()
