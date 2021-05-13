@@ -105,23 +105,23 @@ class mainGUI:
             
             strParity = self.Parity.get()
             if (strParity=="NONE"):
-                self.ser.parity = serial.PARITY_NONE;
+                self.ser.parity = serial.PARITY_NONE
             elif(strParity=="ODD"):
-                self.ser.parity = serial.PARITY_ODD;
+                self.ser.parity = serial.PARITY_ODD
             elif(strParity=="EVEN"):
-                self.ser.parity = serial.PARITY_EVEN;
+                self.ser.parity = serial.PARITY_EVEN
             elif(strParity=="MARK"):
-                self.ser.parity = serial.PARITY_MARK;
+                self.ser.parity = serial.PARITY_MARK
             elif(strParity=="SPACE"):
-                self.ser.parity = serial.PARITY_SPACE;
+                self.ser.parity = serial.PARITY_SPACE
                 
             strStopbits = self.Stopbits.get()
             if (strStopbits == "1"):
-                self.ser.stopbits = serial.STOPBITS_ONE;
+                self.ser.stopbits = serial.STOPBITS_ONE
             elif (strStopbits == "1.5"):
-                self.ser.stopbits = serial.STOPBITS_ONE_POINT_FIVE;
+                self.ser.stopbits = serial.STOPBITS_ONE_POINT_FIVE
             elif (strStopbits == "2"):
-                self.ser.stopbits = serial.STOPBITS_TWO;
+                self.ser.stopbits = serial.STOPBITS_TWO
             
             try:
                 self.ser.open()
